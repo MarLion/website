@@ -1,0 +1,88 @@
+html{font-family:"microsoft yahei",Arial,sans-serif}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,input,button,textarea,p,th,td{padding:0;margin:0;font-family:"microsoft yahei",Arial,sans-serif;}
+table{border-collapse:collapse;border-spacing:0}
+fieldset,img{border:0}
+a{text-decoration:none;color:#000;outline:0}
+li{list-style:none}
+caption,th{text-align:left}
+h1,h2,h3,h4,h5,h6{font-weight:normal}
+input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit}
+input,button,textarea,select{*font-size:100%}
+.clearfloat:after{display:block;content:"clear";height:0;clear:both;overflow:hidden;visibility:hidden}
+.clearfloat{zoom:1}
+.fl{float: left;}
+.mt10{margin-top: 10px;}
+.mt20{margin-top: 20px;}
+.mt30{margin-top: 30px;}
+.mt50{margin-top: 50px;}
+.mt70{margin-top: 70px;}
+.ml15{margin-left: 15px;}
+.ml100{margin-left: 100px;}
+.ml30{margin-left: 30px;}
+.text-left{text-align: left;}
+.text-right{text-align: right;}
+.fs12{font-size: 12px;}
+.fs14{font-size: 14px;}
+.fs16{font-size: 16px;}
+.fs18{font-size: 18px;}
+.fs20{font-size: 20px;}
+.fs22{font-size: 22px;}
+.fs24{font-size: 24px;}
+.pt50{padding-top: 50px;}
+.pb30{padding-bottom: 30px;}
+.min-height{min-height: 800px;}
+.pos-re{position: relative;}
+.pos-ab{position: absolute;}
+.fw{font-weight: bold;}
+
+
+
+/* sonfgwei 2018-10-24 */
+.fr{
+	float: right;
+}
+.f-cb {
+	zoom: 1;
+}
+.f-cb:after {
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+	overflow: hidden;
+	content: ".";
+}
+.main_sw{
+	margin: 0;
+	/* 1 */
+	font-size: 12px;
+	/* 0 */
+	line-height: 1.2;
+	text-align: left;
+	/* 0 */
+	color: #333;
+	/* 0 */
+	background-color: #fff;
+
+	padding-top: 70px;
+}
+@media screen and (max-width: 450px) {
+	.main_sw{
+		padding-top: 50px;
+	}
+}
+.main_sw input,
+.main_sw button,
+.main_sw textarea,
+.main_sw select{
+	outline: 0;
+	padding: 0;
+	margin: 0;
+	background: transparent;
+}
+.main_sw input:focus,
+.main_sw button:focus,
+.main_sw textarea:focus,
+.main_sw select:focus{
+	outline: 0;
+}
