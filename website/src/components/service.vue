@@ -7,9 +7,9 @@
 			</div>
 		</swiper-slide>
 	</swiper>
-	  <div class="swiper-pagination"></div>
-	  <div class="swiper-button-prev"></div>
-	  <div class="swiper-button-next"></div>
+	<div class="swiper-pagination"></div>
+	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ export default {
 			mousewheel: false,//开启鼠标滚轮控制Swiper切换。可设置鼠标选项，默认值false
 			mousewheelControl: false,//同上
 			height: window.innerHeight, // 高度设置，占满设备高度
-			resistanceRatio: 0,//抵抗率。边缘抵抗力的大小比例。值越小抵抗越大越难将slide拖离边缘，0时完全无法拖离。本业务需要
+			resistanceRatio: 0,//抵抗率。边缘抵抗力的大小比例。值越小抵抗越大越难将slide拖离边缘，0时完全无法拖离
 			observeParents: true,
 			autoplay: {
 				disableOnInteraction: false
@@ -52,7 +52,7 @@ export default {
 			//左右点击
 			navigation: {
 				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
+				prevEl: '.swiper-button-prev'
 			},
 			//分页器设置
 			pagination: {
@@ -62,9 +62,9 @@ export default {
 	  }
     }
   },
-	components: {
-		swiper,
-		swiperSlide
+  components: {
+	swiper,
+	swiperSlide
   },
 	mounted () {
 		document.body.scrollTop = 0
@@ -77,7 +77,7 @@ export default {
 		this.$emit('getChangeColor', da)
 	},
 	destroyed () {
-		/* 销毁时传入白色 */
+		/* 销毁时传入修改为默认背景色 */
 		let col = '#ffffff'
 		let font = '#000000'
 		let da = {

@@ -85,6 +85,10 @@ export default {
 	},
 	mounted: function(){
 		document.body.scrollTop = 0
+		let da = {
+			dataColor: '#99cc66'
+		}
+		this.$emit('getChangeColor', da)
 		this.$nextTick(function(){
 			this.$scrollAni.scrollAni();//页面滚动动画
 		});

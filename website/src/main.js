@@ -12,7 +12,7 @@ import headTop from './components/public/header'
 import footBottom from './components/public/footer'
 import lefter from './components/public/lefter'
 import dialoger from './components/public/dialoger'
-
+import store from './store/store'  /* 记得在根实例里面注入 */
 import scrollAni from './assets/public/main.js'/* songwei 页面动画处理公共js引入 */
 Vue.prototype.$scrollAni=scrollAni;
 
@@ -24,31 +24,6 @@ Vue.component('head-view', headTop)
 Vue.component('foot-view', footBottom)
 Vue.component('left-view', lefter)
 Vue.component('dialog-view', dialoger)
-/**
- * 使vuex状态管理保存登录状态
- * */
-const ADD_COUNT = 'ADD_COUNT'
-const REMOVE_COUNT = 'REMOVE_COUNT'
-var store = new Vuex.Store({
-	state:{
-		token:'',
-		userID:'',
-		rememberAcc:''
-	},
-	mutations:{
-		//组件想要对于vuex 中的数据进行的处理
-		//组件中采用this.$store.commit('方法名') 的方式调用，实现充分解耦
-		//内部操作必须在此刻完成(同步)
-		[ADD_COUNT] (state, token) {
-			sessionStorage.setItem('token',token)
-			state.token = token
-		},
-		[REMOVE_COUNT] (state) {
-			sessionStorage.removeItem('token')
-			state.token = ''
-		}
-	}
-})
 /**
  * 注册全局自定义指令 点击空白隐藏
  * */
@@ -146,6 +121,7 @@ Vue.directive('clickoutside', {
 new Vue({
 	el: '#app',
 	router,
+	store,
 	components: {
 		App
 	},

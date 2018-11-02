@@ -80,22 +80,15 @@ export default {
 		 this.isDialog = true
 	  },
 	  closePubDialog: function () {
-	  	  let file  = document.getElementsByClassName('mes-file')[0]
+		  this.applyName = ''
+		  this.applyPhone = ''
+		  let file  = document.getElementsByClassName('mes-file')[0]
 		  file.value = ''
 		  this.isDialog = false
 	  },
 	  getMesFile: function () {
-		  let that = this
-		  if (window.FileReader) {
-			  let reader =new FileReader(),
-				  file=event.target.files[0];
-			  console.log(file)
-			  reader.onloadend = function (ev) {
-				  that.applyVitae.push(file)
-			  }
-		  } else {
-		  	alert('您的浏览器版本不支持该功能，请升级浏览器或者使用其他浏览器')
-		  }
+		  let file=event.target.files[0];
+		  this.applyVitae.push(file)
 	  }
   },
   mounted () {

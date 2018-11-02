@@ -52,7 +52,7 @@ export default {
 		  dataColor: defaultLast
 	  }
 	  this.$emit('getChangeColor', da)
-  	window.removeEventListener('scroll', this.handleScroll)
+	  window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
 	  handleScroll: function () {
@@ -63,14 +63,10 @@ export default {
 		  let winHei = this.$scrollAni.getWindowHeight()
 		  let docuHei = this.$scrollAni.getDocumentHeight()
 		  let isBot = false;
-		  if(docuHei === winHei + scrollTop){
-		  	isBot = true
-		  } else {
-		  	isBot = false
-		  }
+		  isBot = docuHei === winHei + scrollTop;
 		  if (scrollTop >= offsetHeiOne*0.75){
 		  	this.isAniTwo = true
-			this.isHidO =false
+			this.isHidO = false
 		  }
 		  if (scrollTop >= offsetHeiOne + offsetHeiTwo*0.75 || isBot) {
 		  	this.isAniThree = true

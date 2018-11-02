@@ -55,7 +55,6 @@ export default {
 	},
 	methods: {
 		rememberAccount: function(){//记住账号 一个简单的记住账号功能 不必使用vuex 自己封装storage 方便修改维护 代码解耦
-			console.log(this.checked)
 			if (this.checked === 0) {
 				this.$scrollAni.getLocalStorage('acc',this.name)
 			} else if (this.checked === 1) {
@@ -72,6 +71,15 @@ export default {
 				alert('请输入密码');
 				return false;
 			}
+			// 用户可能出现先勾选记住账号 再填写账号的操作顺序 在点击登录时也要做判断
+			if (this.checked === 0) {
+				this.$scrollAni.getLocalStorage('acc',this.name)
+			} else if (this.checked === 1) {
+				this.$scrollAni.removeLoaclStorage('acc')
+			}
+			// 调用store管理登录状态
+			this.$store.commit('ADD_COUNT',this.name)
+			console.log(this.$store.state.token)
 		}
 	}
 };

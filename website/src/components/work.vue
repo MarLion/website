@@ -344,6 +344,15 @@ export default {
 			}
 			.table-box{
 				min-height: 300px;
+				@media screen and (max-width: 1024px) {
+					min-height: 600px;
+				}
+				@media screen and (max-width: 768px) {
+					min-height: 400px;
+				}
+				@media screen and (max-width: 450px) {
+					min-height: 300px;
+				}
 				table{
 					width: 100%;
 					font-size: 16px;

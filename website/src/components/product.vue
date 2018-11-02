@@ -164,42 +164,22 @@ export default {
       /* 根据滚动距离动态添加动画 */
 	  /* 获取各个板块的高度 */
       let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-	  let offsetHeiOne = document.getElementsByClassName('xuanle-container')[0].offsetHeight;
-      let offsetHeiTwo = document.getElementsByClassName('product-two')[0].offsetHeight;
-      let offsetHeiThree = document.getElementsByClassName('product-three')[0].offsetHeight;
-      let offsetHeiFour = document.getElementsByClassName('product-four')[0].offsetHeight;
+	  let offsetHeiOne = document.getElementsByClassName('xuanle-container')[0].offsetHeight
+      let offsetHeiTwo = document.getElementsByClassName('product-two')[0].offsetHeight
+      let offsetHeiThree = document.getElementsByClassName('product-three')[0].offsetHeight
+      let offsetHeiFour = document.getElementsByClassName('product-four')[0].offsetHeight
       /* 判断是否滚动到底部 */
 	  let winHei = this.$scrollAni.getWindowHeight()
 	  let docuHei = this.$scrollAni.getDocumentHeight()
 	  let isBottom = false
-	  if (docuHei === winHei + scrollTop) {
-		  isBottom = true
-	  } else {
-	  		isBottom = false
-	  }
+	  isBottom = docuHei === winHei + scrollTop
       if(scrollTop > 0) {
         this.aniDefalt = false
       }
-      if (scrollTop === 0) {
-        this.aniOne = true
-      } else {
-        this.aniOne = false
-      }
-      if (scrollTop >= offsetHeiOne) {
-        this.aniTwo = true
-      } else {
-        this.aniTwo = false
-      }
-      if (scrollTop >= offsetHeiTwo + offsetHeiOne) {
-        this.aniThree = true
-      } else {
-        this.aniThree = false
-      }
-      if (scrollTop >= offsetHeiThree + offsetHeiTwo + offsetHeiTwo || isBottom) {
-        this.aniFour = true
-      } else {
-        this.aniFour = false
-      }
+      this.aniOne = scrollTop === 0
+      this.aniTwo = scrollTop >= offsetHeiOne
+      this.aniThree = scrollTop >= offsetHeiTwo + offsetHeiOne
+      this.aniFour = scrollTop >= offsetHeiThree + offsetHeiTwo + offsetHeiTwo || isBottom
       /* 根据滚动的高度将背景色传递给父组件 */
 		let col = ""
 	  if (scrollTop <= offsetHeiOne) {
@@ -223,6 +203,9 @@ export default {
     	this.isDialogShow = true
 	},
 	closePubDialog: function () {
+    	this.uName = ''
+		this.uPhone = ''
+		this.uAddress = ''
 		this.isDialogShow = false
 	}
   },
@@ -245,7 +228,7 @@ export default {
 		  dataColor: defaultColor
 	  }
 	  this.$emit('getChangeColor', da)
-    window.removeEventListener('scroll', this.handleScroll)
+	  window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
@@ -271,7 +254,13 @@ export default {
 		top: 0;
 		bottom: 0;
 		margin: auto;
+		@media screen and (max-width: 1670px) {
+			width: 10.8%;
+		}
 		@media screen and (max-width: 1024px) {
+			width: 100px;
+		}
+		@media screen and (max-width: 768px) {
 			display: none;
 		}
 	}
@@ -281,6 +270,12 @@ export default {
 		-moz-animation: pro-one-ani1 20s ease-in infinite;
 		-webkit-animation: pro-one-ani1 20s ease-in infinite;
 		-o-animation: pro-one-ani1 20s ease-in infinite;
+		@media screen and (max-width: 1670px) {
+			right: 550px;
+		}
+		@media screen and (max-width: 1024px) {
+			right: 30%;
+		}
 	}
 	.right2{
 		right: 590px;
@@ -288,6 +283,12 @@ export default {
 		-moz-animation: pro-one-ani2 20s ease-in infinite;
 		-webkit-animation: pro-one-ani2 20s ease-in infinite;
 		-o-animation: pro-one-ani2 20s ease-in infinite;
+		@media screen and (max-width: 1670px) {
+			right: 420px;
+		}
+		@media screen and (max-width: 1024px) {
+			right: 22%;
+		}
 	}
 	.right3{
 		right: 390px;
@@ -295,6 +296,12 @@ export default {
 		-moz-animation: pro-one-ani3 20s ease-in infinite;
 		-webkit-animation: pro-one-ani3 20s ease-in infinite;
 		-o-animation: pro-one-ani3 20s ease-in infinite;
+		@media screen and (max-width: 1670px) {
+			right: 290px;
+		}
+		@media screen and (max-width: 1024px) {
+			right: 14%;
+		}
 	}
 	.right4{
 		right: 160px;
@@ -302,6 +309,12 @@ export default {
 		-moz-animation: pro-one-ani4 20s ease-in infinite;
 		-webkit-animation: pro-one-ani4 20s ease-in infinite;
 		-o-animation: pro-one-ani4 20s ease-in infinite;
+		@media screen and (max-width: 1670px) {
+			right: 160px;
+		}
+		@media screen and (max-width: 1024px) {
+			right: 6%;
+		}
 	}
 	@keyframes pro-one-ani1 {
 		0% {transform: scale(1);z-index: 1;}
@@ -582,10 +595,10 @@ export default {
 	cursor: pointer;
 }
 .titleAniDefault{
-  animation: titleScale 2s ease;
-  -moz-animation: titleScale 2s ease;
-  -webkit-animation: titleScale 2s ease;
-  -o-animation: titleScale 2s ease;
+  animation: titleScale 4s ease;
+  -moz-animation: titleScale 4s ease;
+  -webkit-animation: titleScale 4s ease;
+  -o-animation: titleScale 4s ease;
 	@media screen and (max-width: 450px) {
 		animation: none;
 		-moz-animation: none;
@@ -594,10 +607,10 @@ export default {
 	}
 }
 .titleAni{
-  animation: titleScale 2s ease;
-  -moz-animation: titleScale 2s ease;
-  -webkit-animation: titleScale 2s ease;
-  -o-animation: titleScale 2s ease;
+  animation: titleScale 4s ease;
+  -moz-animation: titleScale 4s ease;
+  -webkit-animation: titleScale 4s ease;
+  -o-animation: titleScale 4s ease;
 	@media screen and (max-width: 450px) {
 		animation: none;
 		-moz-animation: none;
@@ -606,10 +619,10 @@ export default {
 	}
 }
 .titleAniFri{
-  animation: titleFri 2s ease;
-  -moz-animation: titleFri 2s ease;
-  -webkit-animation: titleFri 2s ease;
-  -o-animation: titleFri 2s ease;
+  animation: titleFri 4s ease;
+  -moz-animation: titleFri 4s ease;
+  -webkit-animation: titleFri 4s ease;
+  -o-animation: titleFri 4s ease;
 	@media screen and (max-width: 450px) {
 		animation: none;
 		-moz-animation: none;

@@ -13,40 +13,40 @@
 						<div class="input-group">
 							<span class="title">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span>
 							<div class="input-box">
-								<input class="text" type="text" v-model="name">
+								<input class="text" type="text" v-model="name"/>
 							</div>
 						</div>
 						<div class="input-group">
 							<span class="title">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</span>
 							<div class="input-box">
-								<select class="text" name="" id="" @change="select">
-									<option value="0">男</option>
-									<option value="1">女</option>
+								<select class="text" name="" id="" @change="select" v-model="sex">
+									<option :value="0">男</option>
+									<option :value="1">女</option>
 								</select>
 							</div>
 						</div>
 						<div class="input-group">
 							<span class="title">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：</span>
 							<div class="input-box">
-								<input class="text" type="text" v-model="age">
+								<input class="text" type="text" v-model="age"/>
 							</div>
 						</div>
 						<div class="input-group">
 							<span class="title">家庭住址：</span>
 							<div class="input-box">
-								<input class="text" type="text" v-model="adds">
+								<input class="text" type="text" v-model="adds"/>
 							</div>
 						</div>
 						<div class="input-group">
 							<span class="title">联系电话：</span>
 							<div class="input-box">
-								<input class="text" type="text" v-model="tel">
+								<input class="text" type="text" v-model="tel"/>
 							</div>
 						</div>
 						<div class="input-group">
 							<span class="title">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</span>
 							<div class="input-box">
-								<input class="text" type="text" v-model="email">
+								<input class="text" type="text" v-model="email"/>
 							</div>
 						</div>
 						<div class="input-group">
@@ -60,7 +60,7 @@
 				<div class="container-photo">
 					<div class="per-photo-tit">上传照片</div>
 					<div class="per-photo-detail">
-						<div class="input-group"><!-- 注册用户  无需身份证 -->
+						<div class="input-group" v-show="isNeedIdcard"><!-- 注册用户  无需身份证 -->
 							<span class="title">上传证件：</span>
 							<div class="input-box">
 								<div class="btn w150">
@@ -113,6 +113,7 @@ export default {
 		return {
 			/* 根据page_id展示不同的表单内容 */
 			tit: '',
+			isNeedIdcard: false,
 			photoBaseArr:[],/* 上传的照片*/
 			idCardBaseArrF:[],/* 上传的身份证图片 正 */
 			idCardBaseArrB:[],/* 上传的身份证图片 反*/
@@ -134,10 +135,13 @@ export default {
 		let last_id = this.$route.query.page_id
 		if (last_id === 1) {
 			this.tit = '平台用户注册'
+			this.isNeedIdcard = false
 		} else if (last_id === 2) {
 			this.tit = '专职红娘注册'
+			this.isNeedIdcard = false
 		} else if (last_id === 3) {
 			this.tit = '营养指导师注册'
+			this.isNeedIdcard = true
 		}
 		this.$nextTick(function(){
 			this.$scrollAni.scrollAni();//页面滚动动画
@@ -182,7 +186,8 @@ export default {
 			}
 		},
 		select: function(e){/* 下拉选择性别 */
-			console.log(e.target.value);
+			// console.log(e.target.value);
+			console.log(this.sex);
 		},
 		submit: function(){
 			let _this=this;

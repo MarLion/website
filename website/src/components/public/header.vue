@@ -6,22 +6,22 @@
     <div class="rout-contain">
       <ul class="rout">
         <li>
-          <router-link  to="/product" active-class="selectedli" :style="{color: fontColor}">
+          <router-link  to="/" active-class="selectedli" exact :style="{color: fontColor}">
             产品
           </router-link>
         </li>
         <li>
-          <router-link to="/service" active-class="selectedli" :style="{color: fontColor}">
+          <router-link to="/service" active-class="selectedli" exact :style="{color: fontColor}">
            解决方案&服务
           </router-link>
         </li>
         <li>
-          <router-link to="/business" active-class="selectedli" :style="{color: fontColor}">
+          <router-link to="/business" active-class="selectedli" exact :style="{color: fontColor}">
             商务合作
           </router-link>
         </li>
         <li>
-          <router-link to="/work" active-class="selectedli" :style="{color: fontColor}">
+          <router-link to="/work" active-class="selectedli" exact :style="{color: fontColor}">
             工作机会
           </router-link>
         </li>
@@ -35,7 +35,7 @@
         </li>
         <li class="other-s" v-on:click="isShowLogin">
 		  <span> <i class="iconfont icon-iconfontgerenzhongxin"></i></span>
-		  <span class="ml5 cur-poi">个人中心</span>
+		  <span class="ml5 cur-poi">{{userName}}</span>
         </li>
         <li class="other-s">
 		  <span><i class="iconfont icon-zhongwenyuyan"></i></span>
@@ -46,8 +46,8 @@
 		  <router-link to="/aboutus" class="cur-poi ml5" :style="{color: fontColor}">关于我们</router-link>
         </li>
         <li class="login-choose" v-show="isShow" v-clickoutside="isLoginHidden">
-          <router-link to="/loginView">登录</router-link>
-          <router-link :to="{path: '/register', query:{page_id:1}}">注册</router-link>
+          <router-link to="/loginView" @click.native="hideChoose">登录</router-link>
+          <router-link :to="{path: '/register', query:{page_id:1}}" @click.native="hideChoose">注册</router-link>
         </li>
       </ul>
     </div>
@@ -56,7 +56,10 @@
 	</div>
 	<div class="rout-contain-phone-s">
 		<span><i class="iconfont icon-sousuo" :style="{fontSize: '20px'}" @click="showSearch"></i></span>
-		<span class="ml15"><i class="iconfont icon-iconfontgerenzhongxin" :style="{fontSize: '20px'}" @click="showPerson"></i></span>
+		<span class="ml15">
+			<i class="iconfont icon-iconfontgerenzhongxin" :style="{fontSize: '20px'}" @click="showPerson"></i>
+			<span v-show="isLogined">{{userName}}</span>
+		</span>
 	</div>
 	<transition name="expand">
 		<div class="rout-phone" v-show="isPhoneNavi">
@@ -106,6 +109,8 @@ export default {
   name: "headView",
   data() {
     return {
+	  userName: '个人中心',
+	  isLogined: false,
       isShow: false,
 	  isPhoneNavi: false,
 	  isNaviLeave: true,
@@ -140,9 +145,12 @@ export default {
     };
   },
   methods: {
-    isShowLogin: function() {
+    isShowLogin: function () {
       this.isShow = true;
     },
+	hideChoose: function () {
+    	this.isShow = false
+	},
     isLoginHidden: function () {
       this.isShow = false
     },
